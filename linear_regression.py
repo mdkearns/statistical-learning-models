@@ -27,15 +27,28 @@ def main():
     
     theta = np.dot(inv(np.dot(np.transpose(X), X)), np.dot(np.transpose(X), y))
     
-    # display results of regression
-    
-    print("\nLinear model for the", train_data_file, "training set: \n\n")
-    print(str(theta[0]), "+\n",  str(theta[1]) + "*X_1", "+\n", str(theta[2]) + "*X_2", "+\n", str(theta[3]) + "*X_3\n")
-    
     # evaluate prediction quality
     
-    print(np.dot(X[5], theta))
-    print(y[5])
+    raw_score = 0
+    tolerance = 10
+    
+    for i in range(len(X)):
+        
+        pred = np.dot(X[i], theta)
+        
+        if y[i]-tolerance <= pred <= y[i]+tolerance:
+            raw_score += 1
+            
+    average = raw_score/len(X)
+    
+    # report prediction quality
+    
+    print()
+    print("Data Set:\t", train_data_file, "\n")
+    print("Linear Model:\t y_hat = theta_0 + theta_1 * X_1 + ... + theta_n * X_n\n")
+    print("Theta:\t\t", theta, "\n")
+    print(str(average*100) + "%", "of the training data was correctly classified with a tolerance of +/-", str(tolerance) + ".")
+    print()
     
     return 0
 
