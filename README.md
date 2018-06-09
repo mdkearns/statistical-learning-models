@@ -1,3 +1,3 @@
-# statistical_learning
+# statistical-learning-models
 
-A repository for implementing statistical learning models using the Python programming language.
+A repository for implementing statistical learning models from scratch.
